@@ -19,23 +19,20 @@ namespace Lib_2
         /// <returns>Список случайных чисел</returns>
         public List<int> CalculateTask(int limitNumber, out int razn)
         {
-            List<int> randomNumbers = new List<int>();
-            Random rnd = new Random();
-            razn = 0;
-
-            for (int i = 0; ; i++)
-            {
-                randomNumbers.Add(rnd.Next(2, 10));
-                razn -= randomNumbers[i];
-
-                if (razn <= limitNumber)
-                {
-                    razn += randomNumbers[i];
-                    randomNumbers.RemoveAt(i);
-                    break;
-                }
-            }
-
+          List<int> randomNumbers = new List<int>();
+          Random rnd = new Random();
+          razn = 0;
+          for (int i = 0; ; i++)
+          {
+             randomNumbers.Add(rnd.Next(2, 10));
+             razn -= randomNumbers[i];
+             if (razn <= limitNumber)
+             {
+                  razn += randomNumbers[i];
+                  randomNumbers.RemoveAt(i);
+                  break;
+             }
+          }
             return randomNumbers;
         }
     }

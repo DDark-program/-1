@@ -20,19 +20,27 @@ namespace Практ_1
         private void btnCalculate_Click(object sender, EventArgs e)
         {
             Class1 instance = new Class1();
-            int limitNumber = int.Parse(txtInput.Text);
-            List<int> numbers = instance.CalculateTask(limitNumber, out int razn);
-            if (limitNumber < 0)
+            try
             {
-                txtRazn.Text = razn.ToString();
-                txtNumbers.Clear();
-                foreach (int number in numbers)
+                if (Convert.ToInt32(txtInput.Text) < 0)
                 {
-                    txtNumbers.Text += number.ToString() + " ";
+                    int limitNumber = Convert.ToInt32(txtInput.Text);
+                    List<int> numbers = instance.CalculateTask(limitNumber, out int razn);
+                    txtRazn.Text = razn.ToString();
+                    txtNumbers.Clear();
+                    foreach (int number in numbers)
+                    {
+                        txtNumbers.Text += number.ToString() + " ";
+                    }
+                    txtCount.Text = numbers.Count.ToString();
                 }
-                txtCount.Text = numbers.Count.ToString();
+                else MessageBox.Show("Введено значение больше 0");
             }
-            else MessageBox.Show("Введено неверное значение");
+
+            catch (FormatException)
+            {
+                MessageBox.Show("Введеное знаечение не является числом");
+            }
         }
 
         private void выйтиToolStripMenuItem_Click(object sender, EventArgs e)
